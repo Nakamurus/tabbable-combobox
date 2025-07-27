@@ -9,10 +9,10 @@ export const TABBABLE_SELECTOR = [
 ].join(',');
 
 export const isTabbable = (element: Element): boolean => {
-  if (element.hasAttribute('disabled')) return false;
+  if (element.hasAttribute('disabled')) {return false;}
   
   const tabIndex = element.getAttribute('tabindex');
-  if (tabIndex === '-1') return false;
+  if (tabIndex === '-1') {return false;}
   
   return element.matches(TABBABLE_SELECTOR);
 };

@@ -18,7 +18,7 @@ const ComboboxPopup: React.FC<{
     const popup = popupRef.current;
     const input = inputRef.current;
     
-    if (!popup || !input) return;
+    if (!popup || !input) {return;}
 
     const inputRect = input.getBoundingClientRect();
     popup.style.position = 'absolute';
@@ -83,7 +83,7 @@ export const Combobox2: React.FC<ComboboxProps> = ({
   );
 
   const handleInputChange = useCallback((value: string) => {
-    if (disabled) return;
+    if (disabled) {return;}
     setInputValue(value);
     if (!isTogglingRef.current) {
       setIsOpen(true);
@@ -100,7 +100,7 @@ export const Combobox2: React.FC<ComboboxProps> = ({
   }, [onSelectionChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (disabled) return;
+    if (disabled) {return;}
     
     if (shouldPreventDefault(e.key)) {
       e.preventDefault();
@@ -157,7 +157,7 @@ export const Combobox2: React.FC<ComboboxProps> = ({
   }, [isOpen, filteredOptions, highlightedIndex, handleOptionSelect, disabled, getNextTabbable, getPreviousTabbable]);
 
   const handleToggle = useCallback(() => {
-    if (disabled) return;
+    if (disabled) {return;}
     isTogglingRef.current = true;
     setIsOpen(prev => {
       if (prev) {

@@ -16,7 +16,7 @@ export const FocusableProvider: React.FC<FocusableProviderProps> = ({
 
   const getRoot = useCallback(() => {
     // For form-scoped navigation, find the closest form, otherwise use document.body
-    if (rootElement) return rootElement;
+    if (rootElement) {return rootElement;}
     
     const container = containerRef.current;
     if (container) {

@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import type { ComboboxOption } from './types/combobox'
-import { Combobox1 } from './components/approach1/Combobox1'
-import { Combobox2 } from './components/approach2/Combobox2'
-import { Combobox3 } from './components/approach3/Combobox3'
-import './App.css'
+import { useState } from 'react';
+import type { ComboboxOption } from './types/combobox';
+import { Combobox1 } from './components/approach1/Combobox1';
+import { Combobox2 } from './components/approach2/Combobox2';
+import { Combobox3 } from './components/approach3/Combobox3';
+import './App.css';
 
 const sampleOptions: ComboboxOption[] = [
   { id: '1', label: 'Apple', value: 'apple' },
@@ -14,12 +14,12 @@ const sampleOptions: ComboboxOption[] = [
   { id: '6', label: 'Fig', value: 'fig' },
   { id: '7', label: 'Grape', value: 'grape' },
   { id: '8', label: 'Honeydew', value: 'honeydew' },
-]
+];
 
 function App() {
-  const [selection1, setSelection1] = useState<ComboboxOption | null>(null)
-  const [selection2, setSelection2] = useState<ComboboxOption | null>(null)
-  const [selection3, setSelection3] = useState<ComboboxOption | null>(null)
+  const [selection1, setSelection1] = useState<ComboboxOption | null>(null);
+  const [selection2, setSelection2] = useState<ComboboxOption | null>(null);
+  const [selection3, setSelection3] = useState<ComboboxOption | null>(null);
 
   return (
     <div className="app">
@@ -123,7 +123,7 @@ function App() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -33,7 +33,7 @@ export const useFocusManagement = (): FocusManagementHook => {
     const tabbables = getAllTabbables(current);
     const currentIndex = tabbables.findIndex(el => el === current);
     
-    if (currentIndex === -1) return null;
+    if (currentIndex === -1) {return null;}
     
     // Return next element or null if at end (don't wrap across form boundaries)
     const nextIndex = currentIndex + 1;
@@ -44,7 +44,7 @@ export const useFocusManagement = (): FocusManagementHook => {
     const tabbables = getAllTabbables(current);
     const currentIndex = tabbables.findIndex(el => el === current);
     
-    if (currentIndex === -1) return null;
+    if (currentIndex === -1) {return null;}
     
     // Return previous element or null if at beginning (don't wrap across form boundaries)
     const prevIndex = currentIndex - 1;
