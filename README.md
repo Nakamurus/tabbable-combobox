@@ -1,70 +1,77 @@
-# React + TypeScript + Vite
+# Tabbable Combobox Implementations
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates three different approaches to implementing accessible combobox components with proper keyboard navigation and focus management.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **ARIA Compliant**: All implementations follow WAI-ARIA combobox patterns
+- **Keyboard Navigation**: Support for Arrow keys, Tab/Shift+Tab, Enter, and Escape
+- **Filtering**: Type-ahead filtering of options
+- **Portal Rendering**: Popup menus rendered via React portals
+- **TypeScript**: Full TypeScript support with strict type checking
 
-## Expanding the ESLint configuration
+## Three Approaches
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Approach 1: React ARIA-like (Focusable Context + TreeWalker)
+- Uses React Context to manage focus state
+- Implements TreeWalker API for efficient DOM traversal
+- Provides focus management through context provider
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Approach 2: Custom Hook (querySelectorAll + Form Scoping)
+- Custom hook for focus management
+- Uses `querySelectorAll` with custom filtering logic
+- Scopes focus management to the closest form element
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Approach 3: aria-activedescendant (Virtual Focus)
+- Maintains real focus on input element throughout interaction
+- Uses `aria-activedescendant` for virtual focus on options
+- Screen reader accessible with proper ARIA announcements
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run linting
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
-# tabbable-combobox
+src/
+├── components/
+│   ├── approach1/       # TreeWalker + Context implementation
+│   ├── approach2/       # Custom hook implementation  
+│   ├── approach3/       # aria-activedescendant implementation
+│   └── common/          # Shared CSS styles
+├── types/               # TypeScript type definitions
+├── utils/               # Keyboard and focus utilities
+└── App.tsx             # Demo application
+```
+
+## Keyboard Navigation
+
+- **↑/↓ Arrow Keys**: Navigate options within popup
+- **Tab/Shift+Tab**: Move between form elements (respects focus management approach)
+- **Enter**: Select highlighted option
+- **Escape**: Close popup
+- **Type**: Filter options by typing
+
+## Implementation Notes
+
+Each approach handles Tab navigation differently:
+
+- **Approach 1**: Uses TreeWalker to find next/previous focusable elements
+- **Approach 2**: Uses querySelectorAll within form boundaries  
+- **Approach 3**: Relies on natural Tab behavior since focus stays on input
+
+All approaches use React portals for popup positioning and maintain proper ARIA attributes for screen reader compatibility.
+

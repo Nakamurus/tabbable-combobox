@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Focus Test</title>
+</head>
+<body>
+    <h1>Focus Management Test</h1>
+    <p>Use TAB and Shift+TAB to navigate. Open the combobox with click or arrow down, then use TAB to move to the next element.</p>
+    
+    <input id="before" placeholder="Input before combobox" />
+    <div id="app"></div>
+    <input id="after" placeholder="Input after combobox" />
+    <button id="submit">Submit</button>
+    
+    <script type="module">
+        import React from 'http://localhost:5173/node_modules/react/index.js';
+        import ReactDOM from 'http://localhost:5173/node_modules/react-dom/client.js';
+        import { Combobox1 } from './src/components/approach1/Combobox1.tsx';
+        import { Combobox3 } from './src/components/approach3/Combobox3.tsx';
+
+        const options = [
+            { id: '1', label: 'Apple', value: 'apple' },
+            { id: '2', label: 'Banana', value: 'banana' },
+            { id: '3', label: 'Cherry', value: 'cherry' },
+        ];
+
+        const App = () => React.createElement('div', null,
+            React.createElement('h3', null, 'Approach 1 (TreeWalker)'),
+            React.createElement(Combobox1, { options, placeholder: 'TreeWalker Combobox' }),
+            React.createElement('br'),
+            React.createElement('h3', null, 'Approach 3 (aria-activedescendant)'), 
+            React.createElement(Combobox3, { options, placeholder: 'aria-activedescendant Combobox' })
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
